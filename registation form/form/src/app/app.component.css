@@ -1,0 +1,10 @@
+.card-header-color
+{
+    background-color: rgb(55, 55, 112);
+    color: white;
+}
+.card-header-list-color
+{
+    background-color: rgb(31, 199, 199);
+    color: rgb(235, 20, 20);   
+}

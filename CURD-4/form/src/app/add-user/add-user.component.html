@@ -1,0 +1,103 @@
+<div class="card">
+    <h5 class="card-header card-header-color">User Registration</h5>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row mb-5">
+                <div class="form-group col-3">
+                    <label>Title</label>
+                    <select class="form-control" formControlName="title"
+                        [ngClass]="{'is-invalid' : submitted && f['title'].errors}">
+                        <option value="">--Select-Title--</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Ms">Ms</option>
+                    </select>
+                    <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+                        <div *ngIf="f['title'].errors['required']">Title is required !!</div>
+                    </div>
+                </div>
+                <div class="form-group col-3">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" formControlName="firstname" placeholder="Enter First Name"
+                        [ngClass]="{'is-invalid' : submitted && f['firstname'].errors}">
+                    <div *ngIf="submitted && f['firstname'].errors" class="invalid-feedback">
+                        <div *ngIf="f['firstname'].errors['required']">firstname is required !!</div>
+                        <div *ngIf="f['firstname'].errors['minlength']">firstname must 3 char required !!</div>
+                        <div *ngIf="f['firstname'].errors['maxlength']">firstname must 10 char required !!</div>
+                    </div>
+                </div>
+                <div class="form-group col-3">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastname" placeholder="Enter Last Name"
+                        [ngClass]="{'is-invalid' : submitted && f['lastname'].errors}">
+                    <div *ngIf="submitted && f['lastname'].errors" class="invalid-feedback">
+                        <div *ngIf="f['lastname'].errors['required']">lastname is required !!</div>
+                        <div *ngIf="f['lastname'].errors['minlength']">lastname must 3 char required !!</div>
+                        <div *ngIf="f['lastname'].errors['maxlength']">lastname must 10 char required !!</div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row  mb-5">
+                <div class="form-group col-4">
+                    <label>Date Of Birth</label>
+                    <input type="date" class="form-control" formControlName="dob"
+                        [ngClass]="{'is-invalid' : submitted && f['dob'].errors}">
+                    <div *ngIf="submitted && f['dob'].errors" class="invalid-feedback">
+                        <div *ngIf="f['dob'].errors['required']">dob is required !!</div>
+                        <div *ngIf="f['dob'].errors['pattern']">dob in valid form required !!</div>
+                    </div>
+                </div>
+                <div class="form-group col-4">
+                    <label>Email</label>
+                    <input type="text" class="form-control" formControlName="email" placeholder="Enter Your Email"
+                        [ngClass]="{'is-invalid' : submitted && f['email'].errors}">
+                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <div *ngIf="f['email'].errors['required']">email is required !!</div>
+                        <div *ngIf="f['email'].errors['email']">email in valid format required !!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="form-group col-4">
+                    <label>Password</label>
+                    <input type="password" class="form-control" formControlName="password"
+                        placeholder="Enter Your Password"
+                        [ngClass]="{'is-invalid' : submitted && f['password'].errors}">
+                    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                        <div *ngIf="f['password'].errors['required']">password is required !!</div>
+                        <div *ngIf="f['password'].errors['minlength']">password in must 6 char required !!</div>
+                    </div>
+                </div>
+                <div class="form-group col-4">
+                    <label>Confirm Password</label>
+                    <input type="password" class="form-control" formControlName="confirmpassword"
+                        placeholder="Enter Confirm Password"
+                        [ngClass]="{'is-invalid' : submitted && f['confirmpassword'].errors}">
+                    <div *ngIf="submitted && f['confirmpassword'].errors" class="invalid-feedback">
+                        <div *ngIf="f['confirmpassword'].errors['required']">confirmpassword is required !!</div>
+                        <div *ngIf="f['confirmpassword'].errors['mustMatch']">password and confirmpassword is required
+                            !!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="form-group col form-check">
+                    <input type="checkbox" class="form-check-input" id="acceptTerms" formControlName="acceptTerms"
+                        [ngClass]="{'is-invalid' : submitted && f['acceptTerms'].errors}">
+                    <label for="acceptTerms" class="form-check-label">Accept Term And Condition </label>
+                    <div *ngIf="submitted && f['acceptTerms'].errors" class="invalid-feedback">
+                        <div *ngIf="f['acceptTerms'].errors['required']">acceptTerms is required !!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success me-1">{{buttonText}}</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

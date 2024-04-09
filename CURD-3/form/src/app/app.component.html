@@ -1,0 +1,165 @@
+<div class="card">
+  <h5 class="card-header card-header-color">User Registration</h5>
+  <div class="card-body">
+
+  </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{FormTitle}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addForm" (ngSubmit)="addUser()">
+        <div class="row mb-4">
+          <div class="form-group col">
+            <label>Title</label>
+            <select class="form-control" formControlName="title" [ngClass]="{'is-invalid' : submitted && ctrl['title'].errors}">
+              <option value="">--Select-Title--</option>
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+              <option value="Miss">Miss</option>
+              <option value="Ms">Ms</option>
+            </select>
+            <div *ngIf="submitted && ctrl['title'].errors"  class="invalid-feedback">
+              Title Is Required !!
+            </div>
+          </div>
+          <div class="form-group col-5">
+            <label>First Name</label>
+            <input type="text" class="form-control" formControlName="firstname" placeholder="Enter First Name" [ngClass]="{'is-invalid' : submitted && ctrl['firstname'].errors}"/>
+            <div *ngIf="submitted && ctrl['firstname'].errors" class="invalid-feedback">
+            <div *ngIf=" ctrl['firstname'].errors['required']">
+              First Name Is Required !!
+            </div>
+            <div *ngIf="ctrl['firstname'].errors['minlength']"  >
+              First Name Is atlest 3 char !!
+            </div>  
+            <div *ngIf="ctrl['firstname'].errors['maxlength']"  >
+              First Name Is must 10 char  !!
+            </div>
+          </div>    
+          </div>
+          <div class="form-group col-5">
+            <label>Last Name</label>
+            <input type="text" class="form-control" formControlName="lastname" placeholder="Enter Last Name" [ngClass]="{'is-invalid' : submitted && ctrl['lastname'].errors}">
+            <div *ngIf="submitted && ctrl['lastname'].errors" class="invalid-feedback">
+              <div *ngIf=" ctrl['lastname'].errors['required']">
+                Last Name Is Required !!
+              </div>
+              <div *ngIf="ctrl['lastname'].errors['minlength']"  >
+                Last Name Is atlest 3 char !!
+              </div>  
+              <div *ngIf="ctrl['lastname'].errors['maxlength']"  >
+                Last Name Is must 10 char  !!
+              </div>
+            </div>   
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="form-group col">
+            <label>Date-Of-Birth</label>
+            <input type="date" class="form-control" formControlName="dob" [ngClass]="{'is-invalid' : submitted && ctrl['dob'].errors}">
+            <div *ngIf="submitted && ctrl['dob'].errors" class="invalid-feedback">
+              <div *ngIf=" ctrl['dob'].errors['required']">
+                Date-Of-Birth Is Required !!
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group col">
+            <label>E-mail</label>
+            <input type="text" class="form-control" formControlName="email" placeholder="Enter Your E-mail" [ngClass]="{'is-invalid' : submitted && ctrl['email'].errors}">
+            <div *ngIf="submitted && ctrl['email'].errors" class="invalid-feedback">
+              <div *ngIf=" ctrl['email'].errors['required']">
+                Email Is Required !!
+              </div>
+              <div *ngIf="ctrl['email'].errors['email']"  >
+                 Email should Be in valid  Format   !!
+              </div>  
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="form-group col">
+              <label>Password</label>
+              <input type="password" class="form-control" formControlName="password" placeholder="Enter Password" [ngClass]="{'is-invalid' : submitted && ctrl['password'].errors}">
+              <div *ngIf="submitted && ctrl['password'].errors" class="invalid-feedback">
+                <div *ngIf=" ctrl['password'].errors['required']">
+                  Password Is Required !!
+                </div>
+                <div *ngIf="ctrl['password'].errors['minlength']"  >
+                  Password Is atlest 6 char !!
+                </div>  
+                </div>
+            </div>
+            <div class="form-group col">
+              <label>Confirmpassword</label>
+              <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Enter Confirmpassword" [ngClass]="{'is-invalid' : submitted && ctrl['confirmpassword'].errors}">
+              <div *ngIf="submitted && ctrl['confirmpassword'].errors" class="invalid-feedback">
+                <div *ngIf=" ctrl['confirmpassword'].errors['required']">
+                  Confirmpassword Is Required !!
+                </div>  
+                <div *ngIf=" ctrl['confirmpassword'].errors['mustMatch']">
+                  Password and Confirmpassword must same Required !!
+                </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="form-group col form-check">
+              <input type="checkbox" class="form-control-input" id="acceptTerms" formControlName="acceptTerms" [ngClass]="{'is-invalid' : submitted && ctrl['acceptTerms'].errors}">
+              <label for="acceptTerms" class="form-check-label">Accept Term And Condition </label>
+              <div *ngIf="submitted && ctrl['acceptTerms'].errors" class="invalid-feedback">
+                <div *ngIf=" ctrl['acceptTerms'].errors['required']">
+                  Accept Term And Condition  Is Required !!
+                </div>
+              </div>
+              </div>
+          </div>
+          <div class="row mb-4">
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-success me-2">{{buttonText}}</button>
+              <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+  <h5 class="modal-header"> Add User</h5>
+  <div style="text-align: right;">
+    <button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">Add User</button>
+  </div>
+  <div class="form-row">
+    <div class="form-group-col">
+      <table class="table table-striped ">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>DOB</th>
+            <th>E-mail</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userData">
+            <td>{{user.title}}</td>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.dob}}</td>
+            <td>{{user.email}}</td>
+            <td>
+              <i class="fa fa-edit me-3" style="color: green;" (click)="edit(user.id)"></i>
+              <i class="fa fa-trash-o" style="color: red;" (click)="delete(user.id)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

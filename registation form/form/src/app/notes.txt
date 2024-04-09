@@ -1,0 +1,11 @@
+<!-- <button >save</button>
+<button class="btn btn-success">submit</button>
+<button class="btn btn-primary">submit 2</button>
+<button class="btn btn-danger">cancle</button>
+
+
+<i class='fa fa-edit'></i>
+<i class='fa fa-trash-o'></i> -->
+
+//////
+/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
